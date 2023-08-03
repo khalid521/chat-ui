@@ -1,0 +1,8 @@
+runtime: nodejs18
+handlers:
+  - url: /(.*\.(js|css|svg|png|ico))$
+    static_files: build/\1
+    upload: build/client/chatui/.*\.(js|css|svg|png|ico)$
+  - url: /.*
+    static_files: build/index.js
+    upload: build/index.js
