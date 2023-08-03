@@ -9,7 +9,7 @@ export const load = async ({ params, depends, locals }) => {
 	// todo: add validation on params.id
 	const conversation = await collections.conversations.findOne({
 		_id: new ObjectId(params.id),
-		...authCondition(locals),
+		// ...authCondition(locals),
 	});
 
 	console.log("conversation: ", conversation)
