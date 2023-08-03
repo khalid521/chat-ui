@@ -12,23 +12,25 @@ export const load = async ({ params, depends, locals }) => {
 		...authCondition(locals),
 	});
 
+	console.log("conversation: ", conversation)
+
 	depends(UrlDependency.Conversation);
 
-	// if (!conversation) {
-	// 	const conversationExists =
-	// 		(await collections.conversations.countDocuments({
-	// 			_id: new ObjectId(params.id),
-	// 		})) !== 0;
+	if (!conversation) {
+		const conversationExists =
+			(await collections.conversations.countDocuments({
+				_id: new ObjectId(params.id),
+			})) !== 0;
 
-	// 	if (conversationExists) {
-	// 		throw error(
-	// 			403,
-	// 			"You don't have access to this conversation. If someone gave you this link, ask them to use the 'share' feature instead."
-	// 		);
-	// 	}
+		if (conversationExists) {
+			throw error(
+				403,
+				"You don't have access to this conversation. If someone gave you this link, ask them to use the 'share' feature instead."
+			);
+		}
 
-	// 	throw error(404, "Conversation not found.");
-	// }
+		throw error(404, "Conversation not found.");
+	}
 
 	const webSearchesId = conversation.messages
 		.filter((message) => message.webSearchId)
