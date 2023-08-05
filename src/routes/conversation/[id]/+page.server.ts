@@ -8,7 +8,7 @@ import { UrlDependency } from "$lib/types/UrlDependency";
 export const load = async ({ params, depends, locals }) => {
 	// todo: add validation on params.id
 	const conversation = await collections.conversations.findOne({
-		_id: new ObjectId(params.id),
+		_id: new ObjectId(params.id)
 		// ...authCondition(locals),
 	});
 
